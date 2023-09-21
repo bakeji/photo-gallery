@@ -1,9 +1,10 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import { AppContext } from "./appcontext";
 
 export default function Gallery(){
 const dragItem =useRef("")
 const dragOverItem =useRef("")
+const [loading, setLoading] = useState(true);
 const {pictures, setPictures, showElement, searchedPics}=useContext(AppContext)
 
 const photos =showElement? searchedPics: pictures
@@ -26,12 +27,23 @@ const dragStart = (e, position) => {
     setPictures(copyListItems);
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
 
 
 
     return(
         <div className="photo-gallery">
-            {photos.map((photo, id) =>(
+           {loading ? (
+         <div className="loading-container">
+         <div className="loading-spinner"></div>
+         </div>
+      ):(
+            photos.map((photo, id) =>(
 
             <div key={id} 
             draggable
@@ -43,7 +55,8 @@ const dragStart = (e, position) => {
             <img src={photo.img} alt="picture" />
             <figcaption>{photo.alt}</figcaption>
             </div>
-            ))}
+            ))
+      )}
            
             
 
