@@ -11,6 +11,19 @@ const photos =showElement? searchedPics: pictures
 
 const dragStart = (e, position) => {
     dragItem.current = position;
+
+    if ("ontouchstart" in window) {
+      e.target.addEventListener("touchmove", onTouchMove);
+      e.target.addEventListener("touchend", onTouchEnd);
+    }
+  };
+  const onTouchMove = (e) => {
+    e.preventDefault();
+  };
+
+  const onTouchEnd = (e) => {
+    e.target.removeEventListener("touchmove", onTouchMove);
+    e.target.removeEventListener("touchend", onTouchEnd);
   };
 
   const dragEnter = (e, position) => {
@@ -48,6 +61,7 @@ const dragStart = (e, position) => {
             <div key={id} 
             draggable
             onDragStart={(e) => dragStart(e, id)}
+            onTouchStart={(e)=> dragStart(e, id)}
             onDragEnter={(e)=> dragEnter(e, id)}
             onDragOver={(e)=> e.preventDefault() }
             onDragEnd={drop}
