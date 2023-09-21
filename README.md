@@ -21,7 +21,7 @@ The Photo Gallery App is a web application that allows users to browse and organ
 
 ## Demo
 
-Include a link to a live demo of your application if available.
+-[photo-gallery](https://hng-tsk-3.netlify.app/)
 
 ## Features
 
