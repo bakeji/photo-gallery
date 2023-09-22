@@ -15,18 +15,18 @@ export default function App(){
   const [showElement, setShowElement]= useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const[ pictures, setPictures] = useState([
-    {img:"/blanc.png", alt:"A woman in pink sitting"},
-    {img:"/img1.png", alt:"A picture of a hill"},
-    {img:"/img2.png", alt:"A woman poses with her glasses in her hands"},
-    {img:"/img3.svg", alt:" A girl with red hair"},
-    {img:"/img4.png", alt:"A camera and a man"},
-    {img:"/img5.png", alt:"A woman holding a yellow olval object"},
-    {img:"/img6.png", alt:" woman smilling"},
-    {img:"/img7.png", alt:"a woman in black"},
-    {img:"/img8.png", alt:"a woman poses against a wall while smiling"},
-    {img:"/img9.png", alt:"a painted hand"},
-    {img:"/img10.png", alt:"two white men"},
-    {img:"/arts3.jpg", alt:"a woman sitting on a beach sand at sunset"},
+    {img:"/blanc.png", alt:" woman"},
+    {img:"/img1.png", alt:"Rock"},
+    {img:"/img2.png", alt:"woman "},
+    {img:"/img3.svg", alt:"girl"},
+    {img:"/img4.png", alt:"camera"},
+    {img:"/img5.png", alt:"woman"},
+    {img:"/img6.png", alt:"smile"},
+    {img:"/img7.png", alt:" black"},
+    {img:"/img8.png", alt:" woman "},
+    {img:"/img9.png", alt:"hands"},
+    {img:"/img10.png", alt:"men"},
+    {img:"/arts3.jpg", alt:" beach "},
 ]
 )
 
