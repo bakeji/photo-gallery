@@ -55,7 +55,10 @@ const dragStart = (e, position) => {
          <div className="loading-container">
          <div className="loading-spinner"></div>
          </div>
-      ):(
+      ):(<>
+          {photos.length === 0 ? (
+            <p className="search-not-found">Search not found...</p>
+          ):
             photos.map((photo, id) =>(
 
             <div key={id} 
@@ -70,7 +73,9 @@ const dragStart = (e, position) => {
             <figcaption>{photo.alt}</figcaption>
             </div>
             ))
-      )}
+}
+        </>
+        )}
            
             
 

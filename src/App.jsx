@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Header from "./components/header";
 import LogIn from "./components/LogIn";
-import Gallery from "./components/Gallery";
+import {  Route, Routes, BrowserRouter, Navigate } from 'react-router-dom'
 import {auth} from "./firebase"
 import { AppContext } from "./components/appcontext";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import Page from "./page";
 
 
 
 export default function App(){
   const [isLogIn, setIsLogin]= useState(false)
+  const [user, setUser] = useState(""); 
   const [logInErr, setLogInErr]= useState("")
   const [searchedPics, setSearchedPics] =useState([])
   const [showElement, setShowElement]= useState(false)
@@ -63,29 +64,39 @@ const logInBtn= async(event)=>{
   console.log("button clicked")
   
 }
+
+
+
+
   return(
-    <div className={isLogIn? "app": "page" }>
+    <div className={ isLogIn? "app": "page"}>
       <AppContext.Provider value={{pictures, setPictures, showElement, setShowElement,searchedPics, setSearchedPics}}>
-
       <h3 className="login-err">{!isLogIn? logInErr  : ""}</h3>
-      
-       {isLogIn ?
-       <>
-       <Header
-       user={inputValue.email} 
-        />
-      <Gallery />
-      </>
-       :
+      <>
+      <BrowserRouter>
+          <Routes>
 
-      <LogIn 
-       logInBtn={logInBtn}
-       handleChange={handleChange}
-       userNameValue={inputValue.email}
-       pwdValue ={inputValue.password}
-       />
+            <Route path="/" element= {
+              isLogIn?
+              <Page 
+              user={inputValue.email} />
+            :
+              <LogIn 
+              logInBtn={logInBtn}
+              handleChange={handleChange}
+              userNameValue={inputValue.email}
+              pwdValue ={inputValue.password}
+              isLogIn ={isLogIn}
+              />
+            } />    
+          
+            
+          </Routes>
+      </BrowserRouter>
+
+      </>
        
-}
+       
 
 {isLoading?
   <div className="loading-container">

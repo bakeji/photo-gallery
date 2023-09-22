@@ -73,7 +73,7 @@ input:focus{
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
 }
-.login-err{
+.login-err, .search-not-found{
     color: red;
     font-size: 23px;
     font-family: 'Roboto', sans-serif;

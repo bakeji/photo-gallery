@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 export default function LogIn(props){
     return(
-        <div className="log-in">
+        <div className={`log-in ${props.isLogIn? "hide": ""}`}>
             
             <div className="logo">
                 <img src="/logo.png" alt="logo" />
@@ -32,7 +33,11 @@ export default function LogIn(props){
                       />
                 </div>
                 <>
+                <Link  
+                 style={{textDecoration:"none", marginLeft: "0", color:"#111517"}}
+                  to="/gallery" >
                 <button type="button" onClick={props.logInBtn} className="log-btn">Log in</button>
+                </Link>
                 </>
             
             </form>
