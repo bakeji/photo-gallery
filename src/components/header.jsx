@@ -38,7 +38,7 @@ export default function Header(props){
                 onChange={handleChange} />
                 <button><img src="/Search.png" alt="" /></button>
             </div>
-            <p className="userss">Hello {props.user}</p>
+            <p className="userss">Hello {props.user || props.email}</p>
         </header>
     )
 }

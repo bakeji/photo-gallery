@@ -10,7 +10,6 @@ import Page from "./page";
 
 export default function App(){
   const [isLogIn, setIsLogin]= useState(false)
-  const [user, setUser] = useState(""); 
   const [logInErr, setLogInErr]= useState("")
   const [searchedPics, setSearchedPics] =useState([])
   const [showElement, setShowElement]= useState(false)
@@ -30,8 +29,12 @@ export default function App(){
     {img:"/arts3.jpg", alt:"a woman sitting on a beach sand at sunset"},
 ]
 )
+
+
+
+
   const [inputValue, setInputValue]=useState({
-    email: "",
+    email:  "",
     password: "",
   })
 
@@ -54,6 +57,8 @@ const logInBtn= async(event)=>{
   try {
     setIsLoading(true)
     await signInWithEmailAndPassword(auth,inputValue.email, inputValue.password);
+    localStorage.setItem("userEmail", inputValue.email);
+    localStorage.setItem("isLogIn", "true");
     setIsLogin(true)
     setIsLoading(false)
   } catch (error) {
@@ -66,45 +71,43 @@ const logInBtn= async(event)=>{
 }
 
 
+useEffect(() => {
+  // Check if the user is already logged in when the component mounts
+  const storedIsLogIn = localStorage.getItem("isLogIn");
+  console.log(storedIsLogIn)
+  if (storedIsLogIn === "true" && logInBtn) {
+    setIsLogin(true);
+  }
+}, [logInBtn]);
+  
+const email = localStorage.getItem("userEmail")
+console.log(email)
 
 
   return(
-    <div className={ isLogIn? "app": "page"}>
-      <AppContext.Provider value={{pictures, setPictures, showElement, setShowElement,searchedPics, setSearchedPics}}>
-      <h3 className="login-err">{!isLogIn? logInErr  : ""}</h3>
-      <>
-      <BrowserRouter>
-          <Routes>
+    
+    <div className={isLogIn ? "app" : "page"}>
+      <AppContext.Provider value={{ pictures, setPictures, showElement, setShowElement, searchedPics, setSearchedPics }}>
+        <h3 className="login-err">{!isLogIn ? logInErr : ""}</h3>
 
-            <Route path="/" element= {
-              isLogIn?
-              <Page 
-              user={inputValue.email} />
-            :
-              <LogIn 
-              logInBtn={logInBtn}
-              handleChange={handleChange}
-              userNameValue={inputValue.email}
-              pwdValue ={inputValue.password}
-              isLogIn ={isLogIn}
-              />
-            } />    
-          
-            
-          </Routes>
-      </BrowserRouter>
+        {isLogIn ? (
+          <>
+            <Page
+             email={email}
+             user={inputValue.email} />
+          </>
+        ) : (
+          <LogIn  logInBtn={logInBtn} handleChange={handleChange} userNameValue={inputValue.email} pwdValue={inputValue.password} />
+        )}
 
-      </>
-       
-       
-
-{isLoading?
-  <div className="loading-container">
-    <div className="loading-spinner"></div>
-    </div>
-    :
-    ""}
-</AppContext.Provider>
+        {isLoading ? (
+          <div className="loading-container">
+            <div className="loading-spinner"></div>
+          </div>
+        ) : (
+          ""
+        )}
+      </AppContext.Provider>
     </div>
   )
 }
