@@ -34,9 +34,10 @@ export default function Header(props){
                 <input 
                 type="text"
                 name="search"
+                placeholder="search for tags..."
                 value={searchValue}
                 onChange={handleChange} />
-                <button><img src="/Search.png" alt="" /></button>
+                <button></button>
             </div>
             <p className="userss">Hello {props.user || props.email}</p>
         </header>

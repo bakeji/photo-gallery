@@ -163,6 +163,16 @@ input:focus{
     height: 344px;
     cursor: pointer;
   }
+  figcaption{
+    width: max-content;
+    color: #ffffff;
+    padding: 5px;
+    font-size:20px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
+    border-radius: 8px;
+  }
   @media screen and (max-width:905px) {
     .log-in{
         width: 95%;
