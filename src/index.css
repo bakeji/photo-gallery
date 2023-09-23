@@ -154,6 +154,7 @@ input:focus{
     justify-content: center;
     align-items: center;
     row-gap: 50px;
+    margin-bottom: 80px;
     column-gap: 30px;
     grid-template-columns: auto auto auto auto;
   }
